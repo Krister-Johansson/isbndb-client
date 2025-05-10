@@ -1,5 +1,9 @@
 # ISBNdb Client
 
+[![npm version](https://img.shields.io/npm/v/isbndb-client)](https://www.npmjs.com/package/isbndb-client)
+[![release-please](https://img.shields.io/badge/release--please-enabled-brightgreen)](https://github.com/googleapis/release-please)
+
+
 > ⚠️ **Disclaimer**: This is an unofficial TypeScript client for the ISBNdb API. It is not affiliated with, endorsed by, or connected to isbndb.com. This library is maintained independently and is not officially supported by ISBNdb.
 
 A TypeScript client for the [ISBNdb API](https://isbndb.com/), providing type-safe access to book metadata, author information, publisher details, and subject classifications.
