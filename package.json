@@ -24,6 +24,14 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "check-updates": "npx npm-check-updates --format group -i"
   },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "keywords": [
+    "isbndb",
+    "isbn",
+    // …
   "keywords": [
     "isbndb",
     "isbn",
