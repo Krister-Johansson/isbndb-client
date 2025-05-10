@@ -129,8 +129,8 @@ export interface BookSearchOptions {
 }
 
 export interface AuthorSearchOptions {
-  page?: string;
-  pageSize?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 export interface AuthorDetailOptions {
@@ -140,8 +140,8 @@ export interface AuthorDetailOptions {
 }
 
 export interface PublisherSearchOptions {
-  page?: string;
-  pageSize?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 export interface PublisherDetailOptions {
@@ -151,13 +151,13 @@ export interface PublisherDetailOptions {
 }
 
 export interface SubjectSearchOptions {
-  page?: string;
-  pageSize?: string;
+  page?: number;
+  pageSize?: number;
 }
 
 export interface IndexSearchOptions {
-  page?: string;
-  pageSize?: string;
+  page?: number;
+  pageSize?: number;
   isbn?: string;
   isbn13?: string;
   author?: string;
