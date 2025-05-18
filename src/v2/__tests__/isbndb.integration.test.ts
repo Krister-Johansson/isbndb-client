@@ -5,16 +5,17 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const apiKey = process.env.ISBNDB_API_KEY;
-if (!apiKey) {
-  throw new Error("Missing ISBNDB_API_KEY in environment");
-}
+const describeIfApiKey = apiKey ? describe : describe.skip;
 
-const client = createIsbndbClient(apiKey);
-const service = new IsbndbService(client);
+/**
+ * Only run the integration suite when an `ISBNDB_API_KEY` is provided.
+ * This avoids failures in development environments without credentials.
+ */
+describeIfApiKey("Integration: IsbndbService", () => {
+  const client = createIsbndbClient(apiKey!);
+  const service = new IsbndbService(client);
 
 const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-describe("Integration: IsbndbService", () => {
   beforeAll(() => {
     jest.setTimeout(30000); // increase test timeout if needed
   });
@@ -82,7 +83,7 @@ describe("Integration: IsbndbService", () => {
     });
 
     it("should search authors with options", async () => {
-      const response = await service.searchAuthors("Kernighan", { page: "1", pageSize: "5" });
+      const response = await service.searchAuthors("Kernighan", { page: 1, pageSize: 5 });
       expect(response.data).toBeDefined();
       expect(Array.isArray(response.data.authors)).toBe(true);
       expect(response.data.authors.length).toBeLessThanOrEqual(5);
@@ -113,7 +114,7 @@ describe("Integration: IsbndbService", () => {
     });
 
     it("should search publishers with options", async () => {
-      const response = await service.searchPublishers("Addison", { page: "1", pageSize: "5" });
+      const response = await service.searchPublishers("Addison", { page: 1, pageSize: 5 });
       expect(response.data).toBeDefined();
       expect(Array.isArray(response.data.publishers)).toBe(true);
       expect(response.data.publishers.length).toBeLessThanOrEqual(5);
@@ -130,12 +131,11 @@ describe("Integration: IsbndbService", () => {
     it("should search subjects", async () => {
       const response = await service.searchSubjects("Programming");
       expect(response.data).toBeDefined();
-      console.log(response.data);
       expect(Array.isArray(response.data.subjects)).toBe(true);
     });
 
     it("should search subjects with options", async () => {
-      const response = await service.searchSubjects("Programming", { page: "1", pageSize: "5" });
+      const response = await service.searchSubjects("Programming", { page: 1, pageSize: 5 });
       expect(response.data).toBeDefined();
       expect(Array.isArray(response.data.subjects)).toBe(true);
     });

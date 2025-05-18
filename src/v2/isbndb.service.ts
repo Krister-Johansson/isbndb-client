@@ -29,6 +29,9 @@ import {
  * ```
  */
 export class IsbndbService {
+  /**
+   * @param client Axios instance configured for the ISBNdb API.
+   */
   constructor(private client: AxiosInstance) {}
 
   /**
